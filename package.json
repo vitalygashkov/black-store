@@ -1,0 +1,28 @@
+{
+  "name": "black-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --env-file=.env.local index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@grammyjs/chat-members": "^1.2.0",
+    "@grammyjs/storage-free": "^2.5.1",
+    "@xmldom/xmldom": "^0.9.8",
+    "got-scraping": "^3.2.15",
+    "grammy": "^1.37.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.14"
+  }
+}
