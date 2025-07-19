@@ -28,6 +28,15 @@ const parseAppName = (text) => {
   if (lowercase.includes('юмани')) {
     return 'ЮMoney';
   }
+  if (lowercase.includes('т-инвестиции') || lowercase.includes('т инвестиции')) {
+    return 'Т-Инвестиции';
+  }
+  if (lowercase.includes('cбер бизнес') || lowercase.includes('cбербизнес')) {
+    return 'СберБизнес';
+  }
+  if (lowercase.includes('псб')) {
+    return 'ПСБ';
+  }
 };
 
 const parseAuthor = (commentStructure) => {
