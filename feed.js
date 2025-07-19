@@ -8,7 +8,7 @@ class Feed extends EventEmitter {
     this.feed = [];
   }
 
-  async watch(interval = 1 * 60 * 1000) {
+  async watch(interval = 60 * 1 * 60 * 1000) {
     while (true) {
       const isInit = this.feed.length === 0;
       console.log(`[${new Date().toLocaleString('ru-RU')}] Fetching posts...`);
