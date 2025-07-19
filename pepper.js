@@ -1,6 +1,34 @@
 const { gotScraping } = require('got-scraping');
 
-const parseAppName = (text) => {};
+const hasAppLink = (text) => text.includes('apps.apple.com') || text.includes('testflight.apple.com');
+
+const parseAppName = (text) => {
+  const lowercase = text.toLowerCase();
+  if (lowercase.includes('тбанк') || lowercase.includes('т-банк') || lowercase.includes('т банк')) {
+    return 'Т-Банк';
+  }
+  if (lowercase.includes('альфабанк') || lowercase.includes('альфа-банк') || lowercase.includes('альфа банк')) {
+    return 'Т-Банк';
+  }
+  if (lowercase.includes('cбермобайл')) {
+    return 'СберМобайл';
+  }
+  if (lowercase.includes('uralсиб')) {
+    return 'Уралсиб Онлайн';
+  }
+  if (lowercase.includes('новиком')) {
+    return 'НОВИКОМ';
+  }
+  if (lowercase.includes('бкс банк')) {
+    return 'БКС Банк';
+  }
+  if (lowercase.includes('мтс деньги') || lowercase.includes('экси банк')) {
+    return 'МТС Деньги';
+  }
+  if (lowercase.includes('юмани')) {
+    return 'ЮMoney';
+  }
+};
 
 const parseAuthor = (commentStructure) => {
   const args = commentStructure.split('openProfileTooltip(')[1]?.split(')')[0];
@@ -24,11 +52,14 @@ const parseMessage = (commentStructure) => {
   body = body.replaceAll('</p>', '');
   body = body.trim();
 
+  let appLink = '';
+
   for (const linkPart of body.split('<a')) {
     if (!linkPart.includes('</a>')) continue;
     const a = `<a${linkPart.split('</a>')[0]}</a>`;
     const href = a.split('href="')[1]?.split('"')[0];
     const link = linkPart.split('>')[1]?.split('</a')[0];
+    if (hasAppLink(link)) appLink = link;
     body = body.replaceAll(a, link.includes('...') ? href : link);
   }
 
@@ -36,7 +67,9 @@ const parseMessage = (commentStructure) => {
   const imgTag = `<img${img}>`;
   body = body.replaceAll(imgTag, '');
 
-  return body;
+  const appName = parseAppName(body);
+
+  return { body, appName, appLink };
 };
 
 const getPosts = async () => {
@@ -58,14 +91,12 @@ const getPosts = async () => {
     if (!part.includes('add_post')) continue;
     const commentStructure = part.split('<!-- comment structure End -->')[0]?.trim();
     const { postId, username } = parseAuthor(commentStructure);
-    const message = parseMessage(commentStructure);
-    const post = { id: postId, author: username, message };
+    const { body, appName, appLink } = parseMessage(commentStructure);
+    const post = { id: postId, author: username, message: body, appName, appLink };
     posts.push(post);
   }
 
-  return posts.filter(
-    (post) => post.message.includes('apps.apple.com') || post.message.includes('testflight.apple.com')
-  );
+  return posts.filter((post) => hasAppLink(post.message));
 };
 
 module.exports = { getPosts };
