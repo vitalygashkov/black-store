@@ -63,7 +63,9 @@ const getPosts = async () => {
     posts.push(post);
   }
 
-  return posts.filter((post) => post.message.includes('apps.apple.com'));
+  return posts.filter(
+    (post) => post.message.includes('apps.apple.com') || post.message.includes('testflight.apple.com')
+  );
 };
 
 module.exports = { getPosts };
