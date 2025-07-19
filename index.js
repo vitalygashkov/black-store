@@ -31,7 +31,10 @@ async function main() {
     let text = '';
     if (post.appName && post.appLink) text += `<b>${post.appName}</b>\n${post.appLink}`;
     else text = `${post.message}`;
-    await bot.api.sendMessage(Number(process.env.TG_CHANNEL_ID), text, { parse_mode: 'HTML' });
+    await bot.api.sendMessage(Number(process.env.TG_CHANNEL_ID), text, {
+      parse_mode: 'HTML',
+      link_preview_options: { is_disabled: true },
+    });
   });
 }
 
