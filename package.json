@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Get the latest updates of sanctioned Russian iOS apps",
   "private": true,
-  "main": "index.js",
+  "main": "black-store.js",
   "scripts": {
-    "dev": "node --env-file=.env.local index.js",
-    "start": "node index.js",
+    "dev": "node --env-file=.env.local black-store.js",
+    "start": "node black-store.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

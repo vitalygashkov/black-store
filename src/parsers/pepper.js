@@ -1,43 +1,6 @@
 const { gotScraping } = require('got-scraping');
-
-const hasAppLink = (text) => text.includes('apps.apple.com') || text.includes('testflight.apple.com');
-
-const parseAppName = (text) => {
-  const lowercase = text.toLowerCase();
-  if (lowercase.includes('тбанк') || lowercase.includes('т-банк') || lowercase.includes('т банк')) {
-    return 'Т-Банк';
-  }
-  if (lowercase.includes('альфабанк') || lowercase.includes('альфа-банк') || lowercase.includes('альфа банк')) {
-    return 'Т-Банк';
-  }
-  if (lowercase.includes('cбермобайл')) {
-    return 'СберМобайл';
-  }
-  if (lowercase.includes('uralсиб')) {
-    return 'Уралсиб Онлайн';
-  }
-  if (lowercase.includes('новиком')) {
-    return 'НОВИКОМ';
-  }
-  if (lowercase.includes('бкс банк')) {
-    return 'БКС Банк';
-  }
-  if (lowercase.includes('мтс деньги') || lowercase.includes('экси банк')) {
-    return 'МТС Деньги';
-  }
-  if (lowercase.includes('юмани')) {
-    return 'ЮMoney';
-  }
-  if (lowercase.includes('т-инвестиции') || lowercase.includes('т инвестиции')) {
-    return 'Т-Инвестиции';
-  }
-  if (lowercase.includes('cбер бизнес') || lowercase.includes('cбербизнес')) {
-    return 'СберБизнес';
-  }
-  if (lowercase.includes('псб')) {
-    return 'ПСБ';
-  }
-};
+const { parseAppName } = require('../app-name');
+const { hasAppLink } = require('../app-link');
 
 const parseAuthor = (commentStructure) => {
   const args = commentStructure.split('openProfileTooltip(')[1]?.split(')')[0];

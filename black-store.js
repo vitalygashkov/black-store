@@ -1,5 +1,5 @@
 const { Bot, session } = require('grammy');
-const { Feed } = require('./feed');
+const { Feed } = require('./src/feed');
 
 const bot = new Bot(process.env.TG_BOT_TOKEN);
 
