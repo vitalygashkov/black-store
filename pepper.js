@@ -1,5 +1,7 @@
 const { gotScraping } = require('got-scraping');
 
+const parseAppName = (text) => {};
+
 const parseAuthor = (commentStructure) => {
   const args = commentStructure.split('openProfileTooltip(')[1]?.split(')')[0];
   const [postId, username] = args
@@ -57,7 +59,7 @@ const getPosts = async () => {
     const commentStructure = part.split('<!-- comment structure End -->')[0]?.trim();
     const { postId, username } = parseAuthor(commentStructure);
     const message = parseMessage(commentStructure);
-    const post = { id: postId, username, message };
+    const post = { id: postId, author: username, message };
     posts.push(post);
   }
 

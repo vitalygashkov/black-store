@@ -28,7 +28,7 @@ async function main() {
   feed.watch();
 
   feed.on('post', async (post) => {
-    const text = `<b>${post.username}</b>:\n${post.message}`;
+    const text = `<b>${post.author}</b>:\n${post.message}`;
     await bot.api.sendMessage(Number(process.env.TG_CHANNEL_ID), text, { parse_mode: 'HTML' });
   });
 }
