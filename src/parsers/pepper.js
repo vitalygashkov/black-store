@@ -31,8 +31,9 @@ const parseMessage = (commentStructure) => {
     const a = `<a${linkPart.split('</a>')[0]}</a>`;
     const href = a.split('href="')[1]?.split('"')[0];
     const link = linkPart.split('>')[1]?.split('</a')[0];
-    if (hasAppLink(link)) appLink = link;
-    body = body.replaceAll(a, link.includes('...') ? href : link);
+    const fullLink = link.includes('...') ? href : link;
+    if (hasAppLink(link)) appLink = fullLink;
+    body = body.replaceAll(a, fullLink);
   }
 
   const img = body.split('<img')[1]?.split('>')[0];
