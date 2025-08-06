@@ -7,6 +7,9 @@ const parseAppName = (text) => {
 
   const lowercase = text.toLowerCase();
 
+  if (match(['рокетбанк'])) {
+    return 'Рокетбанк';
+  }
   if (match(['т', 'банк'])) {
     return 'Т-Банк';
   }
@@ -33,6 +36,9 @@ const parseAppName = (text) => {
   }
   if (match(['юмани'])) {
     return 'ЮMoney';
+  }
+  if (match(['дом', 'клик'])) {
+    return 'Домклик';
   }
   if (match(['сбер', 'бизнес'])) {
     return 'СберБизнес';
