@@ -17,7 +17,10 @@ const parseAppName = (text) => {
     return 'Т-Инвестиции';
   }
   if (match(['альфа', 'банк'])) {
-    return 'Т-Банк';
+    return 'Альфа-Банк';
+  }
+  if (match(['альфа', 'инвестиции'])) {
+    return 'Альфа-Инвестиции';
   }
   if (match(['сбер', 'мобайл'])) {
     return 'СберМобайл';
@@ -42,6 +45,9 @@ const parseAppName = (text) => {
   }
   if (match(['сбер', 'бизнес'])) {
     return 'СберБизнес';
+  }
+  if (match(['бспб'])) {
+    return 'БСПБ';
   }
   if (match(['псб'])) {
     return 'ПСБ';
