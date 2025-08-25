@@ -1,4 +1,3 @@
-const { setTimeout: sleep } = require('node:timers/promises');
 const { EventEmitter } = require('node:events');
 const { getPosts } = require('./parsers/pepper');
 const { dateNow } = require('./util');
@@ -9,8 +8,9 @@ class Feed extends EventEmitter {
     this.feed = [];
   }
 
-  async watch(interval = 60 * 1 * 60 * 1000) {
-    while (true) {
+  // every 30 minutes
+  async watch(interval = 30 * 1 * 60 * 1000) {
+    return setInterval(async () => {
       const isInit = this.feed.length === 0;
       console.log(`[${dateNow()}] Fetching posts...`);
       const posts = await getPosts();
@@ -22,8 +22,7 @@ class Feed extends EventEmitter {
         console.log(`[${dateNow()}] New post #${post.id} from ${post.author}`);
         this.emit('post', post);
       }
-      await sleep(interval);
-    }
+    }, interval);
   }
 }
 
