@@ -29,7 +29,7 @@ async function main() {
 
   feed.on('post', async (post) => {
     let text = '';
-    if (post.appName && post.appLink) text += `<b>${post.appName}</b>\n${post.appLink}`;
+    if (post.title && post.link) text += `<b>${post.title}</b>\n${post.link}`;
     else text = `${post.message}`;
     await bot.api.sendMessage(Number(process.env.TG_CHANNEL_ID), text, {
       parse_mode: 'HTML',
