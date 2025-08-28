@@ -7,6 +7,19 @@ const parseAppName = (text) => {
 
   const lowercase = text.toLowerCase();
 
+  if (match(['сбер', 'мобайл'])) {
+    return 'СберМобайл';
+  }
+  if (match(['сбер', 'инвестиции'])) {
+    return 'СберИнвестиции';
+  }
+  if (match(['сбер', 'бизнес'])) {
+    return 'СберБизнес';
+  }
+  if (match(['сбер'])) {
+    return 'Сбер';
+  }
+
   if (match(['рокетбанк'])) {
     return 'Рокетбанк';
   }
@@ -22,12 +35,7 @@ const parseAppName = (text) => {
   if (match(['альфа', 'инвестиции'])) {
     return 'Альфа-Инвестиции';
   }
-  if (match(['сбер', 'мобайл'])) {
-    return 'СберМобайл';
-  }
-  if (match(['сбер', 'инвестиции'])) {
-    return 'СберИнвестиции';
-  }
+
   if (match(['ural', 'сиб']) || match(['урал', 'сиб'])) {
     return 'Уралсиб Онлайн';
   }
@@ -46,14 +54,16 @@ const parseAppName = (text) => {
   if (match(['дом', 'клик'])) {
     return 'Домклик';
   }
-  if (match(['сбер', 'бизнес'])) {
-    return 'СберБизнес';
-  }
+
   if (match(['бспб'])) {
     return 'БСПБ';
   }
   if (match(['псб'])) {
     return 'ПСБ';
+  }
+
+  if (match(['s7'])) {
+    return 'S7 Airlines';
   }
 };
 
