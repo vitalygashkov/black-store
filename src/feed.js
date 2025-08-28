@@ -29,7 +29,7 @@ class Feed extends EventEmitter {
       if (existingPost) continue;
       this.feed.push(post);
       if (skipEmit) continue;
-      console.log(`[${dateNow()}] ${post.author}: ${post.link}`);
+      console.log(`[${dateNow()}] [${post.author}] ${post.title}: ${post.link}`);
       this.emit('post', post);
     }
   }
