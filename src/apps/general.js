@@ -1,0 +1,26 @@
+const { fetchItems } = require('../parsers/4pda');
+const { hasAppLink } = require('../app-link');
+const { parseAppName } = require('../app-name');
+
+const RSS_4PDA_ALL =
+  'https://4pda.to/forum/index.php?m=2373711&psb=cEM7PkI-PG9tcGxsQjw-QEA6PTw-Pzo-PUNtP2xBQUE_&act=st_rss&st=1046078';
+
+const fetchLatestPosts = async () => {
+  const items = fetchItems(RSS_4PDA_ALL);
+  const posts = [];
+  for (const item of items) {
+    const shouldAddPost = hasAppLink(item.description);
+    if (shouldAddPost) {
+      const title = parseAppName(item.description);
+      const appStoreLink = item.description.split('href="https://apps.')[1]?.split('"')[0];
+      const testflightLink = item.description.split('href="https://testflight.')[1]?.split('"')[0];
+      const link = appStoreLink || testflightLink;
+      const exists = posts.find((p) => p.link === link);
+      if (exists) continue;
+      posts.push({ author: item.title, title, link });
+    }
+  }
+  return posts;
+};
+
+module.exports = { fetchLatestPosts };

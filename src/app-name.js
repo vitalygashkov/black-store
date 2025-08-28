@@ -25,6 +25,9 @@ const parseAppName = (text) => {
   if (match(['сбер', 'мобайл'])) {
     return 'СберМобайл';
   }
+  if (match(['сбер', 'инвестиции'])) {
+    return 'СберИнвестиции';
+  }
   if (match(['ural', 'сиб']) || match(['урал', 'сиб'])) {
     return 'Уралсиб Онлайн';
   }
