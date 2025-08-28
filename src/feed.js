@@ -1,6 +1,7 @@
 const { EventEmitter } = require('node:events');
 const { dateNow } = require('./util');
 const sber = require('./apps/sber');
+const { setTimeout: sleep } = require('timers/promises');
 
 class Feed extends EventEmitter {
   constructor() {
@@ -10,9 +11,16 @@ class Feed extends EventEmitter {
 
   async refresh({ skipEmit = false } = {}) {
     console.log(`[${dateNow()}] Refreshing feed...`);
-    const posts = await sber.fetchLatestPosts();
+    const posts = [];
+
+    const sberPosts = await sber.fetchLatestPosts();
+    posts.push(...sberPosts);
+    await sleep(1000);
+
+    // TODO: Extractors for other apps
+
     for (const post of posts) {
-      const existingPost = this.feed.find((p) => p.id === post.id);
+      const existingPost = this.feed.find((p) => p.link === post.link);
       if (existingPost) continue;
       this.feed.push(post);
       if (skipEmit) continue;
