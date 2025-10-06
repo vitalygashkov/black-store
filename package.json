@@ -9,8 +9,22 @@
     "start": "node black-store.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalygashkov/black-store.git"
+  },
+  "keywords": [
+    "ios",
+    "app-store",
+    "apple",
+    "sanctions",
+    "russia"
+  ],
+  "bugs": {
+    "url": "https://github.com/vitalygashkov/black-store/issues",
+    "email": "vitalygashkov@vk.com"
+  },
+  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
   "type": "module",
   "engines": {
