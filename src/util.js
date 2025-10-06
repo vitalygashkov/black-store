@@ -1,3 +1,1 @@
-const dateNow = () => new Date().toLocaleString('ru-RU');
-
-module.exports = { dateNow };
+export const dateNow = () => new Date().toLocaleString('ru-RU');

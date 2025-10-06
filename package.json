@@ -11,8 +11,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "MIT",
+  "type": "module",
   "engines": {
     "node": ">=22"
   },
@@ -20,11 +20,10 @@
     "@grammyjs/chat-members": "^1.2.0",
     "@grammyjs/storage-free": "^2.5.1",
     "@xmldom/xmldom": "^0.9.8",
-    "got-scraping": "^3.2.15",
-    "grammy": "^1.37.0",
+    "grammy": "^1.38.3",
     "impit": "^0.5.4"
   },
   "devDependencies": {
-    "@types/node": "^24.0.14"
+    "@types/node": "^24.7.0"
   }
 }

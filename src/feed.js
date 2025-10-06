@@ -1,11 +1,11 @@
-const { setTimeout: sleep } = require('timers/promises');
-const { EventEmitter } = require('node:events');
-const { dateNow } = require('./util');
-const general = require('./apps/general');
-const sber = require('./apps/sber');
-const tbank = require('./apps/tbank');
+import { setTimeout as sleep } from 'timers/promises';
+import { EventEmitter } from 'node:events';
+import { dateNow } from './util.js';
+import * as general from './apps/general.js';
+import * as sber from './apps/sber.js';
+import * as tbank from './apps/tbank.js';
 
-class Feed extends EventEmitter {
+export class Feed extends EventEmitter {
   constructor() {
     super();
     this.feed = [];
@@ -47,5 +47,3 @@ class Feed extends EventEmitter {
     }, interval);
   }
 }
-
-module.exports = { Feed };

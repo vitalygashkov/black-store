@@ -1,13 +1,8 @@
-const { DOMParser } = require('@xmldom/xmldom');
-const { Impit } = require('impit');
+import { DOMParser } from '@xmldom/xmldom';
+import { fetch } from '../http.js';
 
-const impit = new Impit({
-  browser: 'chrome',
-  ignoreTlsErrors: true,
-});
-
-const fetchItems = async (url) => {
-  const response = await impit.fetch(url);
+export const fetchItems = async (url) => {
+  const response = await fetch(url);
   const xmlString = await response.text();
   const parser = new DOMParser();
   const xml = parser.parseFromString(xmlString, 'text/xml');
@@ -22,5 +17,3 @@ const fetchItems = async (url) => {
   }
   return results;
 };
-
-module.exports = { fetchItems };

@@ -1,11 +1,11 @@
-const { fetchItems } = require('../parsers/4pda');
-const { hasAppLink } = require('../app-link');
-const { parseAppName } = require('../app-name');
+import { fetchItems } from '../parsers/4pda.js';
+import { hasAppLink } from '../app-link.js';
+import { parseAppName } from '../app-name.js';
 
 const RSS_4PDA_ALL =
   'https://4pda.to/forum/index.php?m=2373711&psb=cEM7PkI-PG9tcGxsQjw-QEA6PTw-Pzo-PUNtP2xBQUE_&act=st_rss&st=1046078';
 
-const fetchLatestPosts = async () => {
+export const fetchLatestPosts = async () => {
   const items = await fetchItems(RSS_4PDA_ALL);
   const posts = [];
   for (const item of items) {
@@ -25,5 +25,3 @@ const fetchLatestPosts = async () => {
   }
   return posts;
 };
-
-module.exports = { fetchLatestPosts };

@@ -1,4 +1,4 @@
-const parseAppName = (text) => {
+export const parseAppName = (text) => {
   const match = (parts) => {
     return (
       lowercase.includes(parts.join(' ')) || lowercase.includes(parts.join('-')) || lowercase.includes(parts.join(''))
@@ -69,5 +69,3 @@ const parseAppName = (text) => {
     return 'S7 Airlines';
   }
 };
-
-module.exports = { parseAppName };
