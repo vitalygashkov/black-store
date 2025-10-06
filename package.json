@@ -15,9 +15,11 @@
   "keywords": [
     "ios",
     "app-store",
+    "testflight",
     "apple",
     "sanctions",
-    "russia"
+    "russia",
+    "telegram"
   ],
   "bugs": {
     "url": "https://github.com/vitalygashkov/black-store/issues",
