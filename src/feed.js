@@ -3,6 +3,7 @@ const { EventEmitter } = require('node:events');
 const { dateNow } = require('./util');
 const general = require('./apps/general');
 const sber = require('./apps/sber');
+const tbank = require('./apps/tbank');
 
 class Feed extends EventEmitter {
   constructor() {
@@ -20,6 +21,10 @@ class Feed extends EventEmitter {
 
     const sberPosts = await sber.fetchLatestPosts();
     posts.push(...sberPosts);
+    await sleep(5000);
+
+    const tbankPosts = await tbank.fetchLatestPosts();
+    posts.push(...tbankPosts);
     await sleep(5000);
 
     // TODO: Extractors for other apps
