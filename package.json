@@ -2,7 +2,6 @@
   "name": "black-store",
   "version": "1.0.0",
   "description": "Get the latest updates of sanctioned Russian iOS apps",
-  "private": true,
   "main": "black-store.js",
   "scripts": {
     "dev": "node --env-file=.env.local black-store.js",
