@@ -7,6 +7,9 @@ const parseAppName = (text) => {
 
   const lowercase = text.toLowerCase();
 
+  if (match(['газпром', 'банк'])) {
+    return 'Газпромбанк';
+  }
   if (match(['сбер', 'мобайл'])) {
     return 'СберМобайл';
   }
