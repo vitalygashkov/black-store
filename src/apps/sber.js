@@ -1,21 +1,17 @@
-import { fetchItems } from '../parsers/4pda.js';
+import { _4pdaSource } from '../sources/4pda.js';
 import { hasAppLink } from '../app-link.js';
 
-const RSS_4PDA_SBER =
+// https://4pda.to/forum/index.php?showtopic=590411
+const url =
   'https://4pda.to/forum/index.php?m=2373711&psb=oXRsb3NvbaCeoZ2dc21vcXFrbm1vcGtvbnSecJ1ycnI_&act=st_rss&st=590411';
 
-export const fetchLatestPosts = async () => {
-  const items = await fetchItems(RSS_4PDA_SBER);
-  const posts = [];
-  for (const item of items) {
-    const shouldAddPost = hasAppLink(item.description);
-    if (shouldAddPost) {
-      const title = item.description.includes('СберИнвестиции') ? 'СберИнвестиции' : 'Сбер';
-      const link = item.description.split('href="')[1]?.split('"')[0];
-      const exists = posts.find((p) => p.link === link);
-      if (exists) continue;
-      posts.push({ author: item.title, title, link });
-    }
-  }
-  return posts;
+const adapter = (post) => {
+  const shouldAddPost = hasAppLink(post.description);
+  if (!shouldAddPost) return null;
+  const description = post.description.toLocaleLowerCase();
+  const title = description.includes('сберинвестиции') ? 'СберИнвестиции' : 'Сбер';
+  const link = post.description.split('href="')[1]?.split('"')[0];
+  return { ...post, title, link };
 };
+
+export const sber4pda = _4pdaSource.from(url).with(adapter);

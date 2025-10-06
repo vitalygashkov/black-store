@@ -2,6 +2,7 @@
   "name": "black-store",
   "version": "1.0.0",
   "description": "Get the latest updates of sanctioned Russian iOS apps",
+  "type": "module",
   "main": "black-store.js",
   "scripts": {
     "dev": "node --env-file=.env.local black-store.js",
@@ -27,7 +28,6 @@
   },
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
-  "type": "module",
   "engines": {
     "node": ">=22"
   },

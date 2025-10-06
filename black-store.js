@@ -1,11 +1,12 @@
 import { Bot, session } from 'grammy';
 import { Feed } from './src/feed.js';
-
-const bot = new Bot(process.env.TG_BOT_TOKEN);
-
-bot.use(session({ initial: () => ({}) }));
+import { tbank4pda } from './src/apps/tbank.js';
+import { sber4pda } from './src/apps/sber.js';
+import { sanctioned4pda } from './src/apps/any.js';
 
 async function main() {
+  const bot = new Bot(process.env.TG_BOT_TOKEN);
+  bot.use(session({ initial: () => ({}) }));
   bot
     .start({
       allowed_updates: [
@@ -23,19 +24,19 @@ async function main() {
       process.exit(1);
     });
 
-  const feed = new Feed();
-
-  feed.watch();
-
-  feed.on('post', async (post) => {
-    let text = '';
-    if (post.title && post.link) text += `<b>${post.title}</b>\n${post.link}`;
-    else text = `${post.message}`;
-    await bot.api.sendMessage(Number(process.env.TG_CHANNEL_ID), text, {
+  const sendUpdateToChannel = async (update) => {
+    const channelId = Number(process.env.TG_CHANNEL_ID);
+    const hasMetadata = update.title && update.link;
+    const text = hasMetadata ? `<b>${update.title}</b>\n${update.link}` : update.description;
+    await bot.api.sendMessage(channelId, text, {
       parse_mode: 'HTML',
       link_preview_options: { is_disabled: true },
     });
-  });
+  };
+
+  const feed = new Feed([tbank4pda, sber4pda, sanctioned4pda]);
+  feed.onUpdate = sendUpdateToChannel;
+  feed.watch();
 }
 
 main();
