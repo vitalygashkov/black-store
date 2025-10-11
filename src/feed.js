@@ -40,6 +40,7 @@ export class Feed extends EventEmitter {
   }
 
   async watch({ interval = 30 * 1 * 60 * 1000 /* every 30 minutes */ } = {}) {
+    await this.refresh();
     return setInterval(async () => {
       const isInit = this.feed.length === 0;
       await this.refresh({ skipEmit: isInit }); // Notify about new updates only after initialization

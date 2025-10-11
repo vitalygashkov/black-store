@@ -4,10 +4,6 @@ export class Source {
     this.adapter = (post) => post;
   }
 
-  static from(url) {
-    return new Source(url);
-  }
-
   with(transformPost) {
     this.adapter = transformPost;
     return this;

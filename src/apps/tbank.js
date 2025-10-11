@@ -14,4 +14,4 @@ const adapter = (post) => {
   return { ...post, title, link };
 };
 
-export const tbank4pda = _4pdaSource.from(url).with(adapter);
+export const tbank4pda = new _4pdaSource(url).with(adapter);

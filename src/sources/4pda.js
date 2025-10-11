@@ -26,7 +26,7 @@ export class _4pdaSource extends Source {
       if (!transformed) continue;
       const exists = posts.find((p) => p.link === transformed.link);
       if (exists) continue;
-      posts.push(post);
+      posts.push(transformed);
     }
     return posts;
   }

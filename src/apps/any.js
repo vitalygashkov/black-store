@@ -10,13 +10,13 @@ const adapter = (post) => {
   const shouldAddPost = hasAppLink(post.description);
   if (!shouldAddPost) return null;
   const title = parseAppName(post.description) ?? '';
-  if (!title) console.log(item.description);
-  const appStoreLink = item.description.split('href="https://apps.')[1]?.split('"')[0];
-  const testflightLink = item.description.split('href="https://testflight.')[1]?.split('"')[0];
+  if (!title) console.log(post.description);
+  const appStoreLink = post.description.split('href="https://apps.')[1]?.split('"')[0];
+  const testflightLink = post.description.split('href="https://testflight.')[1]?.split('"')[0];
   const hasLink = appStoreLink || testflightLink;
   if (!hasLink) return null;
   const link = appStoreLink ? `https://apps.${appStoreLink}` : `https://testflight.${testflightLink}`;
   return { ...post, title, link };
 };
 
-export const sanctioned4pda = _4pdaSource.from(url).with(adapter);
+export const sanctioned4pda = new _4pdaSource(url).with(adapter);
