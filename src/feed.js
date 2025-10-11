@@ -25,7 +25,7 @@ export class Feed extends EventEmitter {
     for (const source of this.sources) {
       const posts = await source.fetchPosts();
       updates.push(...posts);
-      await sleep(5000);
+      await sleep((1 + Math.random()) * 60 * 1000); // Random delay 1-2 minutes between requests
     }
 
     for (const update of updates) {
