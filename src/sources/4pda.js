@@ -3,8 +3,8 @@ import { fetch } from '../http.js';
 import { Source } from '../source.js';
 
 export class _4pdaSource extends Source {
-  constructor(url) {
-    super(url);
+  constructor(rss) {
+    super(rss);
   }
 
   async fetchPosts() {
