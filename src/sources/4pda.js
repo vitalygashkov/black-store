@@ -2,6 +2,17 @@ import { DOMParser } from '@xmldom/xmldom';
 import { fetch } from '../http.js';
 import { Source } from '../source.js';
 
+const tryParseXml = (xmlString) => {
+  try {
+    const parser = new DOMParser();
+    return parser.parseFromString(xmlString, 'text/xml');
+  } catch (error) {
+    console.log(xmlString);
+    console.error(error);
+    return null;
+  }
+};
+
 export class _4pdaSource extends Source {
   constructor(rss) {
     super(rss);
@@ -10,8 +21,8 @@ export class _4pdaSource extends Source {
   async fetchPosts() {
     const response = await fetch(this.url);
     const xmlString = await response.text();
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(xmlString, 'text/xml');
+    const xml = tryParseXml(xmlString);
+    if (!xml) return [];
     const items = xml.getElementsByTagName('item');
     const posts = [];
     for (const item of items) {
