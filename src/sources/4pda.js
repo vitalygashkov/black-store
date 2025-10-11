@@ -21,6 +21,9 @@ export class _4pdaSource extends Source {
   async fetchPosts() {
     const response = await fetch(this.url);
     const xmlString = await response.text();
+    if (xmlString.includes('challenge-platform')) {
+      console.error('Captcha detected');
+    }
     const xml = tryParseXml(xmlString);
     if (!xml) return [];
     const items = xml.getElementsByTagName('item');
