@@ -23,9 +23,11 @@ export class Feed extends EventEmitter {
     }
 
     for (const source of this.sources) {
+      console.log(`[${dateNow()}] Fetching posts from ${source.url}`);
       const posts = await source.fetchPosts();
+      console.log(`[${dateNow()}] Found ${posts.length} posts`);
       updates.push(...posts);
-      await sleep((1 + Math.random()) * 60 * 1000); // Random delay 1-2 minutes between requests
+      await sleep((1 + Math.random()) * 10 * 60 * 1000); // Random delay 10-20 minutes between requests
     }
 
     for (const update of updates) {
@@ -39,7 +41,7 @@ export class Feed extends EventEmitter {
     }
   }
 
-  async watch({ interval = 30 * 1 * 60 * 1000 /* every 30 minutes */ } = {}) {
+  async watch({ interval = 2 * 60 * 1 * 60 * 1000 /* every 2 hours */ } = {}) {
     await this.refresh();
     return setInterval(async () => {
       const isInit = this.feed.length === 0;
