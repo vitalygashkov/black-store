@@ -3,6 +3,7 @@ import { Feed } from './src/feed.js';
 import { tbank4pda } from './src/apps/tbank.js';
 import { sber4pda } from './src/apps/sber.js';
 import { sanctioned4pda } from './src/apps/any.js';
+import { dateNow } from './src/util.js';
 
 const bot = new Bot(process.env.TG_BOT_TOKEN);
 bot.use(session({ initial: () => ({}) }));
@@ -27,6 +28,8 @@ const sendUpdateToChannel = async (update) => {
   const channelId = Number(process.env.TG_CHANNEL_ID);
   const hasMetadata = update.title && update.link;
   const text = hasMetadata ? `<b>${update.title}</b>\n${update.link}` : update.description;
+  console.log(`[${dateNow()}] Sending update to channel:`);
+  console.log(text);
   await bot.api.sendMessage(channelId, text, {
     parse_mode: 'HTML',
     link_preview_options: { is_disabled: true },

@@ -10,6 +10,13 @@ export const parseAppName = (text) => {
   if (match(['газпром', 'банк'])) {
     return 'Газпромбанк';
   }
+  if (match(['почта', 'банк'])) {
+    return 'Почта Банк';
+  }
+  if (match(['совком', 'банк'])) {
+    return 'Халва – Совкомбанк';
+  }
+
   if (match(['сбер', 'мобайл'])) {
     return 'СберМобайл';
   }
