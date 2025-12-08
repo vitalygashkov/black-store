@@ -1,6 +1,7 @@
 import { setTimeout as sleep } from 'timers/promises';
 import { EventEmitter } from 'node:events';
 import { dateNow } from './util.js';
+import { getAppId } from './app-link.js';
 
 // Refresh all feed sources (every 2 hours by default)
 const getRefreshInterval = () => (process.env.REFRESH_INTERVAL_MINUTES ?? 120) * 60 * 1000;
@@ -33,7 +34,7 @@ export class Feed extends EventEmitter {
       console.log(`[${dateNow()}] Found ${posts.length} posts`);
 
       for (const post of posts) {
-        const existing = this.feed.find((p) => p.link === post.link);
+        const existing = this.feed.find((p) => getAppId(p.link) === getAppId(post.link));
         if (existing) {
           console.log(`[${dateNow()}] Post already exists in feed: ${post.link}`);
           continue;
