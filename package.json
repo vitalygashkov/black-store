@@ -36,12 +36,12 @@
     "@grammyjs/chat-members": "^1.2.0",
     "@grammyjs/storage-free": "^2.5.1",
     "@xmldom/xmldom": "^0.9.8",
-    "grammy": "^1.38.3",
+    "grammy": "^1.39.3",
     "impit": "^0.5.4"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.7.10",
-    "@types/node": "^24.7.0",
-    "vitest": "^3.2.4"
+    "@types/node": "^25.2.0",
+    "vitest": "^4.0.18"
   }
 }
