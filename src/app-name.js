@@ -39,7 +39,7 @@ export const parseAppName = (text) => {
   if (match(['т', 'банк'])) {
     return 'Т-Банк';
   }
-  if (match(['т', 'инвестиции'])) {
+  if (match(['т', 'инвестици'])) {
     return 'Т-Инвестиции';
   }
   if (match(['альфа', 'банк'])) {
