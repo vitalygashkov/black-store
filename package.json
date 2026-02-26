@@ -1,18 +1,18 @@
 {
-  "name": "black-store",
+  "name": "app-sneak",
   "version": "1.0.0",
   "description": "Get the latest updates of sanctioned Russian iOS apps",
   "type": "module",
-  "main": "black-store.js",
+  "main": "app-sneak.js",
   "scripts": {
-    "dev": "node --env-file=.env.local black-store.js",
-    "start": "node black-store.js",
+    "dev": "node --env-file=.env.local app-sneak.js",
+    "start": "node app-sneak.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "flyctl deploy"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vitalygashkov/black-store.git"
+    "url": "git+https://github.com/vitalygashkov/app-sneak.git"
   },
   "keywords": [
     "ios",
@@ -24,7 +24,7 @@
     "telegram"
   ],
   "bugs": {
-    "url": "https://github.com/vitalygashkov/black-store/issues",
+    "url": "https://github.com/vitalygashkov/app-sneak/issues",
     "email": "vitalygashkov@vk.com"
   },
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",

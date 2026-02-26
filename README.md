@@ -1,6 +1,6 @@
-# Black Store
+# App Sneak
 
-Black Store is a service for web scraping information about the latest updates of **Russian sanctioned iOS apps**.
+App Sneak is a service for web scraping information about the latest updates of **Russian sanctioned iOS apps**.
 
 The service has integration with **Telegram**: a **bot** for sending notifications to the specified Telegram channel.
 
