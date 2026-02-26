@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'app-store'
+app = 'app-sneak'
 primary_region = 'arn'
 
 [build]
